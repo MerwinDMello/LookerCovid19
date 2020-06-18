@@ -20,5 +20,5 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # }
 
 explore: bqpd_covid19_jhu_us_summarized_by_state{
-  label: "Cases by Report Date and State"
+  label: "Cases Reported by State and Date"
 }
