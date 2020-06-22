@@ -19,6 +19,10 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 #   }
 # }
 
-explore: bqpd_covid19_jhu_us_cleansed{
-  label: "Cases Reported by State and Date"
-}
+#explore: jhu_uscovid{
+#  label: "Cases Reported by State and Date"
+#    join: geo_us_states {
+#      relationship: many_to_one
+#      sql_on: ${users.id} = ${orders.user_id} ;;
+#      }
+#  }

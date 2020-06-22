@@ -3,11 +3,13 @@ view: bqpd_covid19_jhu_us_cleansed {
     ;;
 
   dimension: daily_cases {
+    hidden: yes
     type: number
     sql: ${TABLE}.Daily_Cases ;;
   }
 
   dimension: daily_deaths {
+    hidden: yes
     type: number
     sql: ${TABLE}.Daily_Deaths ;;
   }
@@ -43,11 +45,13 @@ view: bqpd_covid19_jhu_us_cleansed {
   }
 
   dimension: total_cases {
+    hidden: yes
     type: number
     sql: ${TABLE}.Total_Cases ;;
   }
 
   dimension: total_deaths {
+    hidden: yes
     type: number
     sql: ${TABLE}.Total_Deaths ;;
   }
@@ -65,5 +69,17 @@ view: bqpd_covid19_jhu_us_cleansed {
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: total_daily_cases {
+    label: "Total Daily Cases"
+    type: sum
+    sql: ${daily_cases} ;;
+  }
+
+  measure: total_daily_deaths {
+    label: "Total Daily Deaths"
+    type: sum
+    sql: ${daily_deaths} ;;
   }
 }

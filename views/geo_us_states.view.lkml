@@ -62,6 +62,11 @@ view: bqpd_geo_us_boundaries_states {
     sql: ${TABLE}.state ;;
   }
 
+  dimension: mapped_state {
+    map_layer_name: us_states
+    sql: ${state};;
+  }
+
   dimension: state_fips_code {
     type: string
     sql: ${TABLE}.state_fips_code ;;
