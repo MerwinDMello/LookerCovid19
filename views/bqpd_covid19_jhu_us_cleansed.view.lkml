@@ -1,5 +1,5 @@
-view: bqpd_covid19_jhu_us_summarized_by_county {
-  sql_table_name: `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_summarized_by_county`
+view: bqpd_covid19_jhu_us_cleansed {
+  sql_table_name: `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_cleansed`
     ;;
 
   dimension: daily_cases {
@@ -12,7 +12,22 @@ view: bqpd_covid19_jhu_us_summarized_by_county {
     sql: ${TABLE}.Daily_Deaths ;;
   }
 
-  dimension_group: date {
+  dimension: fips_code {
+    type: string
+    sql: ${TABLE}.Fips_Code ;;
+  }
+
+  dimension: map_plotted_by_county {
+    type: yesno
+    sql: ${TABLE}.Map_Plotted_By_County ;;
+  }
+
+  dimension: map_plotted_by_states_territories {
+    type: yesno
+    sql: ${TABLE}.Map_Plotted_By_StatesTerritories ;;
+  }
+
+  dimension_group: reporting {
     type: time
     timeframes: [
       raw,
@@ -24,22 +39,7 @@ view: bqpd_covid19_jhu_us_summarized_by_county {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.date ;;
-  }
-
-  dimension: latitude {
-    type: number
-    sql: ${TABLE}.latitude ;;
-  }
-
-  dimension: longitude {
-    type: number
-    sql: ${TABLE}.longitude ;;
-  }
-
-  dimension: map_plotted_by_county {
-    type: string
-    sql: ${TABLE}.Map_Plotted_By_County ;;
+    sql: ${TABLE}.reporting_date ;;
   }
 
   dimension: total_cases {
