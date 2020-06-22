@@ -19,10 +19,10 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 #   }
 # }
 
-#explore: jhu_uscovid{
- # label: "Cases Reported by State and Date"
-  #  join: geo_us_states {
-   #   relationship: many_to_one
-#      sql_on: ${users.id} = ${orders.user_id} ;;
-#      }
- # }
+explore: jhu_uscovid{
+  label: "Cases Reported by State and Date"
+    join: geo_us_states {
+      relationship: many_to_one
+      sql_on: ${jhu_uscovid.us_state} = ${geo_us_states.state_name} ;;
+      }
+    }

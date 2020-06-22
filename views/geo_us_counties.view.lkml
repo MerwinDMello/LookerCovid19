@@ -1,4 +1,4 @@
-view: bqpd_geo_us_boundaries_counties {
+view: geo_us_counties {
   sql_table_name: `covid-19-trends.covid_19_trends_demo.bqpd_geo_us_boundaries_counties`
     ;;
 

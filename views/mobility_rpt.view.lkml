@@ -1,4 +1,4 @@
-view: bqpd_covid19_google_mobility_report {
+view: mobility_rpt {
   sql_table_name: `covid-19-trends.covid_19_trends_demo.bqpd_covid19_google_mobility_report`
     ;;
 
