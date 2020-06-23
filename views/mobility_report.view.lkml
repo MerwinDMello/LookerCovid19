@@ -76,4 +76,40 @@ view: mobility_report {
     type: count
     drill_fields: []
   }
+
+  measure: grocery_and_pharmacy {
+    type: sum
+    sql: ${grocery_and_pharmacy_percent_change} ;;
+    value_format: "0\%"
+  }
+
+  measure: parks {
+    type: sum
+    sql: ${parks_percent_change} ;;
+    value_format: "0\%"
+  }
+
+  measure: residential {
+    type: sum
+    sql: ${residential_percent_change} ;;
+    value_format: "0\%"
+  }
+
+  measure: retail_and_recreation {
+    type: sum
+    sql: ${retail_and_recreation_percent_change} ;;
+    value_format: "0\%"
+  }
+
+  measure: transit_stations {
+    type: sum
+    sql: ${transit_stations_percent_change} ;;
+    value_format: "0\%"
+  }
+
+  measure: workplaces {
+    type: sum
+    sql: ${workplaces_percent_change} ;;
+    value_format: "0\%"
+  }
 }

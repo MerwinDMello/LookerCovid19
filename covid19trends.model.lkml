@@ -16,15 +16,23 @@ explore: jhu_uscovid{
       AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
       Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
       }
-    join: mobility_report {
-      relationship: one_to_one
-      sql_on: ${mobility_report.mobility_report_raw} = ${jhu_uscovid.reporting_raw}
-      AND ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code};;
-
-    }
-    join: weather_history {
-      relationship: one_to_one
-      sql_on: ${weather_history.weather_rptg_raw} = ${jhu_uscovid.reporting_raw}
-      AND ${weather_history.us_county_code} = ${geo_us_counties.county_fips_code};;
-    }
+#    join: mobility_report {
+#      relationship: one_to_one
+#      sql_on: ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code};;
+#
+#    }
+#    join: weather_history {
+#      relationship: one_to_one
+#      sql_on: ${weather_history.us_county_code} = ${geo_us_counties.county_fips_code};;
+#    }
+}
+explore:  mobility_report{
+#  join: geo_us_counties {
+#    relationship: many_to_one
+#    sql_on: ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code});;
+#  }
+#  join: geo_us_states {
+#    relationship: many_to_one
+#    sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code} ;;
+#  }
 }
