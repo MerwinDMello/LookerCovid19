@@ -78,37 +78,37 @@ view: mobility_report {
   }
 
   measure: grocery_and_pharmacy {
-    type: sum
+    type: average
     sql: ${grocery_and_pharmacy_percent_change} ;;
     value_format: "0\%"
   }
 
   measure: parks {
-    type: sum
+    type: average
     sql: ${parks_percent_change} ;;
     value_format: "0\%"
   }
 
   measure: residential {
-    type: sum
+    type: average
     sql: ${residential_percent_change} ;;
     value_format: "0\%"
   }
 
   measure: retail_and_recreation {
-    type: sum
+    type: average
     sql: ${retail_and_recreation_percent_change} ;;
     value_format: "0\%"
   }
 
   measure: transit_stations {
-    type: sum
+    type: average
     sql: ${transit_stations_percent_change} ;;
     value_format: "0\%"
   }
 
   measure: workplaces {
-    type: sum
+    type: average
     sql: ${workplaces_percent_change} ;;
     value_format: "0\%"
   }
