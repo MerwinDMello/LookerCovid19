@@ -19,7 +19,7 @@ explore: jhu_uscovid{
     join: mobility_report {
       relationship: one_to_one
       sql_on: ${mobility_report.mobility_report_raw} = ${jhu_uscovid.reporting_raw}
-      AND ${mobility_report.mobility_report_date} = ${geo_us_counties.state_fips_code};;
+      AND ${mobility_report.us_county_code} = ${geo_us_counties.state_fips_code};;
 
     }
     join: weather_history {
