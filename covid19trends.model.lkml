@@ -29,7 +29,7 @@ explore: jhu_uscovid{
 explore:  mobility_report{
   join: geo_us_counties {
     relationship: many_to_one
-    sql_on: ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code});;
+    sql_on: ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code};;
   }
   join: geo_us_states {
     relationship: many_to_one
