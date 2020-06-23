@@ -19,12 +19,12 @@ explore: jhu_uscovid{
     join: mobility_report {
       relationship: one_to_one
       sql_on: ${mobility_report.mobility_report_raw} = ${jhu_uscovid.reporting_raw}
-      AND ${mobility_report.us_county_code} = ${geo_us_counties.state_fips_code};;
+      AND ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code};;
 
     }
     join: weather_history {
       relationship: one_to_one
       sql_on: ${weather_history.weather_rptg_raw} = ${jhu_uscovid.reporting_raw}
-      AND ${weather_history.us_county_code} = ${geo_us_counties.state_fips_code};;
+      AND ${weather_history.us_county_code} = ${geo_us_counties.county_fips_code};;
     }
 }
