@@ -71,14 +71,27 @@ view: jhu_uscovid {
     drill_fields: []
   }
 
+
+  measure: total_cumulative_cases {
+    label: "Total Cases"
+    type: sum
+    sql: ${daily_cases} ;;
+  }
+
+  measure: total_cumulative_deaths {
+    label: "Total Deaths"
+    type: sum
+    sql: ${daily_deaths} ;;
+  }
+
   measure: total_daily_cases {
-    label: "Total Daily Cases"
+    label: "Daily Cases"
     type: sum
     sql: ${daily_cases} ;;
   }
 
   measure: total_daily_deaths {
-    label: "Total Daily Deaths"
+    label: "Daily Deaths"
     type: sum
     sql: ${daily_deaths} ;;
   }
