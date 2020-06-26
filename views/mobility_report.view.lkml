@@ -12,6 +12,21 @@ view: mobility_report {
     sql: ${TABLE}.location_category ;;
   }
 
+  dimension_group: actual {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Actual_Date ;;
+  }
+
   dimension_group: mobility_report {
     type: time
     timeframes: [

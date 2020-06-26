@@ -44,6 +44,21 @@ view: jhu_uscovid {
     sql: ${TABLE}.reporting_date ;;
   }
 
+  dimension_group: actual {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Actual_Date ;;
+  }
+
   dimension: total_cases {
     hidden: yes
     type: number

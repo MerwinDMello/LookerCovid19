@@ -37,6 +37,21 @@ view: weather_history {
     sql: ${TABLE}.us_county_code ;;
   }
 
+  dimension_group: actual {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Actual_Date ;;
+  }
+
   dimension_group: weather_rptg {
     type: time
     timeframes: [
