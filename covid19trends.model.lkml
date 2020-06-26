@@ -16,6 +16,10 @@ explore: jhu_uscovid{
       AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
       Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
       }
+  join: date {
+    relationship: many_to_one
+    sql_on: ${date.reporting_raw} = ${jhu_uscovid.reporting_raw};;
+      }
 #    join: mobility_report {
 #      relationship: one_to_one
 #      sql_on: ${mobility_report.us_county_code} = ${geo_us_counties.county_fips_code};;
@@ -34,5 +38,9 @@ explore:  mobility_report{
   join: geo_us_states {
     relationship: many_to_one
     sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code} ;;
+  }
+  join: date {
+    relationship: many_to_one
+    sql_on: ${date.reporting_raw} = ${mobility_report.mobility_report_raw};;
   }
 }
