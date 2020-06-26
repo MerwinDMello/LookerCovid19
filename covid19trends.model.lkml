@@ -11,7 +11,7 @@ datagroup: jhu_datagroup {
 
 datagroup: weather_datagroup {
   max_cache_age: "10 minutes"
-  sql_trigger:SELECT MAX(date) FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_county_weather_history` ;;
+  sql_trigger:SELECT MAX(weather_rptg_date) FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_county_weather_history` ;;
 }
 
 datagroup: mobility_datagroup {
