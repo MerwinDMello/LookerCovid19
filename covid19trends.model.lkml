@@ -36,10 +36,6 @@ explore: jhu_uscovid{
     relationship: many_to_one
     sql_on: ${date.actual_raw} = ${jhu_uscovid.actual_raw};;
       }
-#    join: weather_history {
-#      relationship: one_to_one
-#      sql_on: ${weather_history.us_county_code} = ${geo_us_counties.county_fips_code};;
-#    }
 }
 explore:  weather_history{
   persist_with:weather_datagroup
