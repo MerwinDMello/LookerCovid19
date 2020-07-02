@@ -3,11 +3,13 @@ view: max_reporting_date_statecounty {
     sql: SELECT
       US_State,
       US_County,
+      Fips_Code,
       Max(Actual_Date) as Actual_Date
       FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_cleansed` jhu
       Group By
       US_State,
-      US_County
+      US_County,
+      Fips_Code
        ;;
   }
 
@@ -39,6 +41,16 @@ view: max_reporting_date_statecounty {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.Actual_Date ;;
+  }
+
+  dimension: fips_code {
+    type: string
+    sql: ${TABLE}.Fips_Code ;;
+  }
+
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(${TABLE}.US_State, ${TABLE}.US_County, ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
   }
 
   set: detail {

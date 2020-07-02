@@ -42,10 +42,8 @@ explore: max_reporting_date_statecounty{
 
   join: jhu_uscovid {
     type: left_outer
-    relationship: many_to_one
-    sql_on: ${max_reporting_date_statecounty.us_state} = ${jhu_uscovid.us_state}
-    AND ${max_reporting_date_statecounty.us_county} = ${jhu_uscovid.us_county}
-    AND ${max_reporting_date_statecounty.actual_raw} = ${jhu_uscovid.actual_raw};;
+    relationship: one_to_one
+    sql_on: ${max_reporting_date_statecounty.primary_key} = ${jhu_uscovid.primary_key};;
   }
   join: geo_us_states {
     type: left_outer

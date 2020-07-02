@@ -75,6 +75,11 @@ view: jhu_uscovid {
   }
 
 
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(${TABLE}.US_State, ${TABLE}.US_County, ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
+  }
+
   measure: total_cumulative_cases {
     label: "Total Cases"
     type: sum
