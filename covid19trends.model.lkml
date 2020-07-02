@@ -32,10 +32,6 @@ explore: jhu_uscovid{
       AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
       Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
       }
-  join: date {
-    relationship: many_to_one
-    sql_on: ${date.actual_raw} = ${jhu_uscovid.actual_raw};;
-      }
 }
 explore:  weather_history{
   persist_with:weather_datagroup
@@ -47,10 +43,6 @@ explore:  weather_history{
     relationship: many_to_one
     sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code} ;;
   }
-  join: date {
-    relationship: many_to_one
-    sql_on: ${date.actual_raw} = ${weather_history.actual_raw};;
-  }
 }
 explore:  mobility_report{
   persist_with:mobility_datagroup
@@ -61,9 +53,5 @@ explore:  mobility_report{
   join: geo_us_states {
     relationship: many_to_one
     sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code} ;;
-  }
-  join: date {
-    relationship: many_to_one
-    sql_on: ${date.actual_raw} = ${mobility_report.actual_raw};;
   }
 }

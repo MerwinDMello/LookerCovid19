@@ -59,18 +59,6 @@ view: jhu_uscovid {
     sql: ${TABLE}.Actual_Date ;;
   }
 
-  dimension: total_cases {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.Total_Cases ;;
-  }
-
-  dimension: total_deaths {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.Total_Deaths ;;
-  }
-
   dimension: us_county {
     type: string
     sql: ${TABLE}.US_County ;;
