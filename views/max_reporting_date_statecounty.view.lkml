@@ -6,6 +6,13 @@ view: max_reporting_date_statecounty {
       Fips_Code,
       Max(Actual_Date) as Actual_Date
       FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_cleansed` jhu
+      Where (CASE
+      WHEN US_State = 'Commonwealth of the Northern Mariana Islands' AND fips_code = '69000' THEN 'N'
+      WHEN US_State = 'United States Virgin Islands' AND fips_code = '78000' THEN 'N'
+      WHEN US_State = 'Guam' AND fips_code = '66000' THEN 'N'
+      WHEN US_State = 'Utah' AND fips_code = '90049' AND us_county = 'Southwest Utah' THEN 'N'
+      ELSE 'Y'
+    END) = 'Y'
       Group By
       US_State,
       US_County,
@@ -50,7 +57,7 @@ view: max_reporting_date_statecounty {
 
   dimension: primary_key {
     primary_key: yes
-    sql: CONCAT(${TABLE}.US_State, ${TABLE}.US_County, ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
+    sql: CONCAT(${TABLE}.US_State, Coalesce(${TABLE}.US_County,''), ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
   }
 
   set: detail {
