@@ -72,6 +72,7 @@ view: weather_history {
     type: average
     sql: ${avg_temp} ;;
     value_format_name: decimal_2
+    drill_fields: []
   }
 
   measure: maximum_temp {
@@ -79,6 +80,7 @@ view: weather_history {
     type: max
     sql: ${max_temp} ;;
     value_format_name: decimal_2
+    drill_fields: []
   }
 
   measure: minimum_temp {
@@ -86,6 +88,7 @@ view: weather_history {
     type: min
     sql: ${min_temp} ;;
     value_format_name: decimal_2
+    drill_fields: []
   }
 
   measure: average_humidity {
@@ -93,6 +96,7 @@ view: weather_history {
     type: average
     sql: ${avg_humidity_rel} ;;
     value_format_name: decimal_2
+    drill_fields: []
   }
 
   measure: maximum_humidity {
@@ -100,6 +104,7 @@ view: weather_history {
     type: max
     sql: ${max_humidity_rel} ;;
     value_format_name: decimal_2
+    drill_fields: []
   }
 
   measure: minimum_humidity {
@@ -107,6 +112,7 @@ view: weather_history {
     type: min
     sql: ${min_humidity_rel} ;;
     value_format_name: decimal_2
+    drill_fields: []
   }
 
   measure: count {
