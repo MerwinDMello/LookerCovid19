@@ -36,30 +36,6 @@ explore: jhu_uscovid{
       }
 }
 
-explore: max_reporting_date_statecounty{
-  persist_with:jhu_datagroup
-  label: "Daily Cases Reported by State, County and Date"
-
-  join: jhu_uscovid {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${max_reporting_date_statecounty.primary_key} = ${jhu_uscovid.primary_key};;
-  }
-  join: geo_us_states {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${max_reporting_date_statecounty.us_state} = ${geo_us_states.state_name} ;;
-  }
-  join: geo_us_counties {
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code}
-      AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
-      Or ${max_reporting_date_statecounty.us_county} = ${geo_us_counties.county_name});;
-  }
-}
-
-
 explore:  weather_history{
   persist_with:weather_datagroup
   join: geo_us_counties {
