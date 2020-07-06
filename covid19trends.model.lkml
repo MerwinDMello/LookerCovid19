@@ -21,7 +21,7 @@ datagroup: mobility_datagroup {
 
 explore: jhu_uscovid{
   persist_with:jhu_datagroup
-  label: "Total Cases Reported by State, County and Date"
+  label: "Cases Reported by State, County and Date"
     join: geo_us_states {
       type: left_outer
       relationship: many_to_one
