@@ -67,6 +67,48 @@ view: weather_history {
     sql: ${TABLE}.weather_rptg_date ;;
   }
 
+  measure: average_temp {
+    label: "Average Temperature"
+    type: average
+    sql: ${avg_temp} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: maximum_temp {
+    label: "Max Temperature"
+    type: max
+    sql: ${max_temp} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: minimum_temp {
+    label: "Min Temperature"
+    type: min
+    sql: ${min_temp} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: average_humidity {
+    label: "Average Humidity"
+    type: average
+    sql: ${avg_humidity_rel} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: maximum_humidity {
+    label: "Max Humidity"
+    type: max
+    sql: ${max_humidity_rel} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: minimum_humidity {
+    label: "Min Humidity"
+    type: min
+    sql: ${min_humidity_rel} ;;
+    value_format_name: decimal_2
+  }
+
   measure: count {
     type: count
     drill_fields: []
