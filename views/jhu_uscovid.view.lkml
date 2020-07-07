@@ -92,6 +92,22 @@ view: jhu_uscovid {
     sql: ${daily_deaths} ;;
   }
 
+  measure: total_cumulative_deaths_html {
+    label: "Total Deaths"
+    type: sum
+    sql: ${daily_deaths} ;;
+    html:
+    {% if value > 75}
+    <p style="background-color: #cf3943">{{ rendered_value }}</p>
+    {% elsif value > 50}
+    <p style="background-color: #f0971a">{{ rendered_value }}</p>
+    {% elsif value > 9}
+    <p style="background-color: #ffcf1a">{{ rendered_value }}</p>
+    {% else %}
+    <p style="background-color: #1aa75d">{{ rendered_value }}</p>
+    {% endif %};;
+  }
+
   measure: total_daily_cases {
     label: "Daily Cases"
     type: sum
