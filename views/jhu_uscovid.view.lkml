@@ -93,7 +93,7 @@ view: jhu_uscovid {
   }
 
   measure: total_cumulative_deaths_html {
-    label: "Total Deaths"
+    label: "Total Deaths2"
     type: sum
     sql: ${daily_deaths} ;;
     html:
