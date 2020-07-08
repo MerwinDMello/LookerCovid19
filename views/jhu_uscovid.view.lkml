@@ -92,14 +92,6 @@ view: jhu_uscovid {
     sql: ${daily_deaths} ;;
   }
 
-  dimension: total_cumulative_deaths_tier {
-    label: "Risk Level Tier"
-    tiers: [0, 10, 50, 200]
-    style: integer
-    type: tier
-    sql: ${daily_cases} ;;
-  }
-
   measure: total_daily_cases {
     label: "Daily Cases"
     type: sum
