@@ -34,6 +34,11 @@ explore: jhu_uscovid{
       AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
       Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
       }
+  join: census_data_view {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${geo_us_counties.county_fips_code} = ${census_data_view.us_county_code} ;;
+  }
 }
 
 explore:  weather_history{

@@ -20,6 +20,7 @@ view: census_data_view {
   }
 
   dimension: us_county_code {
+    primary_key: yes
     type: string
     sql: ${TABLE}.US_County_Code ;;
   }
