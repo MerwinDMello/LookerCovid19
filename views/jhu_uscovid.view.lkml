@@ -98,6 +98,12 @@ view: jhu_uscovid {
     sql: ${daily_deaths} ;;
   }
 
+  measure: total_cumulative_deaths_population {
+    label: "Total Cases by Millions"
+    type: number
+    sql: CASE WHEN (${census_data_view.population} IS NULL OR ${census_data_view.population} =  0) THEN ${total_cumulative_deaths} ELSE ${total_cumulative_deaths} / ${census_data_view.population}*1000000 END;;
+  }
+
   parameter: population_scale {
     type: string
     allowed_value: {
@@ -110,7 +116,17 @@ view: jhu_uscovid {
     }
   }
 
-  measure: dynamic_measure {
+  measure: dynamic_measure_cases {
+    label_from_parameter: population_scale
+    sql:
+            CASE
+             WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_deaths}
+             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_deaths_population}
+             ELSE NULL
+            END ;;
+  }
+
+  measure: dynamic_measure_deaths {
     label_from_parameter: population_scale
     sql:
             CASE
