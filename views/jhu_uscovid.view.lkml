@@ -105,7 +105,7 @@ view: jhu_uscovid {
   }
 
   parameter: population_scale {
-    type: unquoted
+    type: number
     allowed_value: {
       label: "Raw Data"
       value: "total_numbers"
