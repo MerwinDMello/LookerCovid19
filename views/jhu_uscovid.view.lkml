@@ -118,6 +118,7 @@ view: jhu_uscovid {
 
   measure: dynamic_measure_cases {
     label_from_parameter: population_scale
+    type: number
     sql:
             CASE
              WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_cases}
@@ -128,6 +129,7 @@ view: jhu_uscovid {
 
   measure: dynamic_measure_deaths {
     label_from_parameter: population_scale
+    type: number
     sql:
             CASE
              WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_deaths}
