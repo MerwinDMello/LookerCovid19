@@ -87,7 +87,7 @@ view: jhu_uscovid {
   }
 
   measure: total_cumulative_cases_population {
-    label: "Total Cases by Millions"
+    label: "Total Cases by 100K"
     type: number
     sql: CASE WHEN (${census_data_view.population} IS NULL OR ${census_data_view.population} =  0) THEN ${total_cumulative_cases} ELSE ${total_cumulative_cases} / ${census_data_view.population}*100000 END;;
   }
@@ -99,7 +99,7 @@ view: jhu_uscovid {
   }
 
   measure: total_cumulative_deaths_population {
-    label: "Total Cases by Millions"
+    label: "Total Cases by 100K"
     type: number
     sql: CASE WHEN (${census_data_view.population} IS NULL OR ${census_data_view.population} =  0) THEN ${total_cumulative_deaths} ELSE ${total_cumulative_deaths} / ${census_data_view.population}*100000 END;;
   }
@@ -111,8 +111,8 @@ view: jhu_uscovid {
       value: "total_numbers"
     }
     allowed_value: {
-      label: "Scaled to Millions"
-      value: "scaled_to_millions"
+      label: "Scaled to 100K"
+      value: "scaled_to_100K"
     }
   }
 
@@ -123,7 +123,7 @@ view: jhu_uscovid {
     sql:
             CASE
              WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_cases}
-             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_cases_population}
+             WHEN {% parameter population_scale %} = 'scaled_to_100K' THEN ${total_cumulative_cases_population}
              ELSE NULL
             END ;;
   }
@@ -135,7 +135,7 @@ view: jhu_uscovid {
     sql:
             CASE
              WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_deaths}
-             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_deaths_population}
+             WHEN {% parameter population_scale %} = 'scaled_to_100K' THEN ${total_cumulative_deaths_population}
              ELSE NULL
             END ;;
   }
