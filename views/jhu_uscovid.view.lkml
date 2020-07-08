@@ -87,7 +87,7 @@ view: jhu_uscovid {
   }
 
   measure: total_cumulative_cases_population {
-    label: "Total Cases"
+    label: "Total Cases by Millions"
     type: number
     sql: ${total_cumulative_cases} / ${census_data_view.population}*1000000;;
   }
@@ -98,7 +98,27 @@ view: jhu_uscovid {
     sql: ${daily_deaths} ;;
   }
 
+  parameter: population_scale {
+    type: string
+    allowed_value: {
+      label: "Raw Data"
+      value: "total_numbers"
+    }
+    allowed_value: {
+      label: "Scaled to Millions"
+      value: "scaled_to_millions"
+    }
+  }
 
+  measure: dynamic_measure {
+    label_from_parameter: population_scale
+    sql:
+            CASE
+             WHEN {% parameter population_scale %} = 'Raw Data' THEN ${total_cumulative_cases}
+             WHEN {% parameter population_scale %} = 'Scaled to Millions' THEN ${total_cumulative_cases_population}
+             ELSE NULL
+            END ;;
+  }
 
   measure: total_daily_cases {
     label: "Daily Cases"
