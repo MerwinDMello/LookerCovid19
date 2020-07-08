@@ -120,8 +120,8 @@ view: jhu_uscovid {
     label_from_parameter: population_scale
     sql:
             CASE
-             WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_deaths}
-             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_deaths_population}
+             WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_cases}
+             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_cases_population}
              ELSE NULL
             END ;;
   }
@@ -130,8 +130,8 @@ view: jhu_uscovid {
     label_from_parameter: population_scale
     sql:
             CASE
-             WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_cases}
-             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_cases_population}
+             WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_deaths}
+             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_deaths_population}
              ELSE NULL
             END ;;
   }
