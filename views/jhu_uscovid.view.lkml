@@ -114,8 +114,8 @@ view: jhu_uscovid {
     label_from_parameter: population_scale
     sql:
             CASE
-             WHEN {% parameter population_scale %} = 'Raw Data' THEN ${total_cumulative_cases}
-             WHEN {% parameter population_scale %} = 'Scaled to Millions' THEN ${total_cumulative_cases_population}
+             WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_cases}
+             WHEN {% parameter population_scale %} = 'scaled_to_millions' THEN ${total_cumulative_cases_population}
              ELSE NULL
             END ;;
   }
