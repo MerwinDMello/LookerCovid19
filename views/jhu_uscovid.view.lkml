@@ -89,7 +89,7 @@ view: jhu_uscovid {
   measure: total_cumulative_cases_population {
     label: "Total Cases by Millions"
     type: number
-    sql: ${total_cumulative_cases} / ${census_data_view.population}*1000000;;
+    sql: CASE WHEN ${census_data_view.population} IS NULL THEN ${total_cumulative_cases} ELSE ${total_cumulative_cases} / ${census_data_view.population}*1000000 END;;
   }
 
   measure: total_cumulative_deaths {
