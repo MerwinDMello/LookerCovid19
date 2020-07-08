@@ -14,20 +14,10 @@ view: census_data_view {
     sql: ${total_population} ;;
   }
 
-  dimension: us_county {
-    type: number
-    sql: ${TABLE}.US_County ;;
-  }
-
   dimension: us_county_code {
     primary_key: yes
     type: string
     sql: ${TABLE}.US_County_Code ;;
-  }
-
-  dimension: us_state {
-    type: number
-    sql: ${TABLE}.US_State ;;
   }
 
   dimension: us_state_code {
