@@ -86,11 +86,19 @@ view: jhu_uscovid {
     sql: ${daily_cases} ;;
   }
 
+  measure: total_cumulative_cases_population {
+    label: "Total Cases"
+    type: number
+    sql: ${total_cumulative_cases} / ${census_data_view.population}*1000000;;
+  }
+
   measure: total_cumulative_deaths {
     label: "Total Deaths"
     type: sum
     sql: ${daily_deaths} ;;
   }
+
+
 
   measure: total_daily_cases {
     label: "Daily Cases"
