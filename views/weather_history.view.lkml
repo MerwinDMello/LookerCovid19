@@ -10,6 +10,7 @@ view: weather_history {
   dimension: avg_temp {
     type: number
     sql: ${TABLE}.avg_temp ;;
+    group_label: "temp"
   }
 
   dimension: max_humidity_rel {
@@ -20,6 +21,7 @@ view: weather_history {
   dimension: max_temp {
     type: number
     sql: ${TABLE}.max_temp ;;
+    group_label: "temp"
   }
 
   dimension: min_humidity_rel {
@@ -30,6 +32,7 @@ view: weather_history {
   dimension: min_temp {
     type: number
     sql: ${TABLE}.min_temp ;;
+    group_label: "temp"
   }
 
   dimension: us_county_code {
@@ -117,6 +120,6 @@ view: weather_history {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [us_county_code,avg_temp, min_temp,max_temp,actual_date]
   }
 }

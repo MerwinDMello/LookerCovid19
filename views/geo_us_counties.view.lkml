@@ -22,6 +22,10 @@ view: geo_us_counties {
     sql: ${TABLE}.state_fips_code ;;
   }
 
+dimension: prim_key {
+  primary_key: yes
+  sql: Concat(${county_name} || ${state_fips_code}) ;;
+}
   measure: count {
     type: count
   }

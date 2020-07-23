@@ -75,10 +75,10 @@ view: jhu_uscovid {
   }
 
 
-  dimension: primary_key {
-    primary_key: yes
-    sql: CONCAT(${TABLE}.US_State, Coalesce(${TABLE}.US_County,''), ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
-  }
+#  dimension: primary_key {
+#    primary_key: yes
+#    sql: CONCAT(${TABLE}.US_State, Coalesce(${TABLE}.US_County,''), ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
+#  }
 
   measure: total_cumulative_cases {
     label: "Total Cases"
@@ -100,6 +100,7 @@ view: jhu_uscovid {
 
   measure: total_cumulative_deaths_population {
     label: "Total Cases by 100K"
+    description: "Showing cases in 100K format"
     type: number
     sql: CASE WHEN (${census_data_view.population} IS NULL OR ${census_data_view.population} =  0) THEN ${total_cumulative_deaths} ELSE ${total_cumulative_deaths} / ${census_data_view.population}*100000 END;;
   }

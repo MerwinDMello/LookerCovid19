@@ -22,7 +22,9 @@ datagroup: mobility_datagroup {
 explore: jhu_uscovid{
   persist_with:jhu_datagroup
   label: "Cases Reported by State, County and Date"
+  view_label: "Covid Data"
     join: geo_us_states {
+      view_label: "US States"
       type: left_outer
       relationship: many_to_one
       sql_on: ${jhu_uscovid.us_state} = ${geo_us_states.state_name} ;;
@@ -34,7 +36,7 @@ explore: jhu_uscovid{
       AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
       Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
       }
-  join: census_data_view {
+    join: census_data_view {
     type: left_outer
     relationship: many_to_one
     sql_on: ${geo_us_counties.county_fips_code} = ${census_data_view.us_county_code} ;;
