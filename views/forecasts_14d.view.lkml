@@ -1,4 +1,4 @@
-view: bqpd_covid19_public_forecasts_county_14d {
+view: forecasts_14d {
   sql_table_name: `covid-19-trends.covid_19_trends_demo.bqpd_covid19_public_forecasts_county_14d`
     ;;
 
@@ -108,16 +108,18 @@ view: bqpd_covid19_public_forecasts_county_14d {
   measure: average_predicted_confirmed_cases {
     label: "Average Predicted Cases"
     type: average
-    sql: ${new_predicted_confirmed_cases} ;;
+    sql: ${new_confirmed} ;;
     value_format_name: decimal_2
+    filters: [prediction: "yes"]
     #drill_fields: []
   }
 
   measure: average_predicted_death_cases {
     label: "Average Predicted Deaths"
     type: average
-    sql: ${new_predicted_death_cases} ;;
+    sql: ${new_deaths} ;;
     value_format_name: decimal_2
+    filters: [prediction: "yes"]
     #drill_fields: []
   }
 

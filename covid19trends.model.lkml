@@ -70,3 +70,7 @@ explore:  mobility_report{
     sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code} ;;
   }
 }
+
+explore:  forecasts_14d{
+
+}
