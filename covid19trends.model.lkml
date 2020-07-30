@@ -25,6 +25,7 @@ explore: jhu_uscovid{
   view_label: "Covid Data"
     join: geo_us_states {
       view_label: "US States"
+
       type: left_outer
       relationship: many_to_one
       sql_on: ${jhu_uscovid.us_state} = ${geo_us_states.state_name} ;;
@@ -45,7 +46,9 @@ explore: jhu_uscovid{
 
 explore:  weather_history{
   persist_with:weather_datagroup
+
   join: geo_us_counties {
+    #fields:[county_fips_code,mapped_county,geo_us_counties.state_fips_code]
     type: left_outer
     relationship: many_to_one
     sql_on: ${weather_history.us_county_code} = ${geo_us_counties.county_fips_code};;

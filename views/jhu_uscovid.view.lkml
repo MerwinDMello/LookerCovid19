@@ -16,6 +16,7 @@ view: jhu_uscovid {
 
   dimension: fips_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Fips_Code ;;
   }
 
@@ -121,6 +122,7 @@ view: jhu_uscovid {
     label_from_parameter: population_scale
     type: number
     value_format_name: decimal_0
+    group_label:"Dynamic"
     sql:
             CASE
              WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_cases}
@@ -133,6 +135,7 @@ view: jhu_uscovid {
     label_from_parameter: population_scale
     type: number
     value_format_name: decimal_0
+    group_label:"Dynamic"
     sql:
             CASE
              WHEN {% parameter population_scale %} = 'total_numbers' THEN ${total_cumulative_deaths}
