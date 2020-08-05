@@ -22,6 +22,21 @@ datagroup: mobility_datagroup {
 explore: jhu_uscovid{
   persist_with:jhu_datagroup
   label: "Cases Reported by State, County and Date"
+  #sql_always_where: ${actual_date}>= Date_Sub(current_date, INTERVAL 3 DAY ) ;;
+  #sql_always_having: ${total_cumulative_cases} > 10000 ;;
+  #conditionally_filter: {
+  #  filters: {
+  #    field: us_state_upper
+  #    value: "CALIFORNIA"
+  #  }
+  #  unless: [actual_date]
+  #}
+#  always_filter: {
+#    filters: {
+#      field: us_state_upper
+#      value: "CALIFORNIA"
+#    }
+#  }
   view_label: "Covid Data"
     join: geo_us_states {
       view_label: "US States"
@@ -73,6 +88,69 @@ explore:  mobility_report{
     sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code} ;;
   }
 }
+
+explore: jhu_state_agg_table {
+  label: "Cases Reported for County vs State"
+  join: jhu_uscovid {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${jhu_state_agg_table.us_state} = ${jhu_uscovid.us_state}
+    AND ${jhu_state_agg_table.reporting_raw} = ${jhu_uscovid.reporting_raw};;
+  }
+  join: geo_us_states {
+    view_label: "US States"
+
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${jhu_uscovid.us_state} = ${geo_us_states.state_name} ;;
+  }
+  join: geo_us_counties {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code}
+      AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
+      Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
+  }
+  join: census_data_view {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${geo_us_counties.county_fips_code} = ${census_data_view.us_county_code} ;;
+  }
+}
+
+
+explore: lookml_jhu_state_agg {
+  label: "Cases Reported for County vs State v2"
+  join: jhu_uscovid {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${lookml_jhu_state_agg.us_state} = ${jhu_uscovid.us_state}
+      AND ${lookml_jhu_state_agg.reporting_raw} = ${jhu_uscovid.reporting_raw};;
+  }
+  join: geo_us_states {
+    view_label: "US States"
+
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${jhu_uscovid.us_state} = ${geo_us_states.state_name} ;;
+  }
+  join: geo_us_counties {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${geo_us_states.state_fips_code} = ${geo_us_counties.state_fips_code}
+      AND (${jhu_uscovid.fips_code} = ${geo_us_counties.county_fips_code}
+      Or ${jhu_uscovid.us_county} = ${geo_us_counties.county_name});;
+  }
+  join: census_data_view {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${geo_us_counties.county_fips_code} = ${census_data_view.us_county_code} ;;
+  }
+}
+
+explore:census_data_view {
+  }
+
 
 explore:  forecasts_14d{
 

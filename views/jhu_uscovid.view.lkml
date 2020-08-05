@@ -70,6 +70,12 @@ view: jhu_uscovid {
     sql: ${TABLE}.US_State ;;
   }
 
+  dimension: us_state_upper {
+    type: string
+    sql: UPPER(TRIM(${us_state})) ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: []
@@ -80,6 +86,12 @@ view: jhu_uscovid {
 #    primary_key: yes
 #    sql: CONCAT(${TABLE}.US_State, Coalesce(${TABLE}.US_County,''), ${TABLE}.Fips_Code, ${TABLE}.Actual_Date) ;;
 #  }
+
+
+  dimension: unique_key {
+    primary_key: yes
+    sql: Concat(${reporting_raw},${us_state},Coalesce(${TABLE}.US_County,''), ${TABLE}.Fips_Code) ;;
+  }
 
   measure: total_cumulative_cases {
     label: "Total Cases"
