@@ -4,7 +4,7 @@ view: jhu_state_agg_table {
       FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_cleansed`
       Group By reporting_date, US_State
        ;;
-    persist_for:"5 minutes"
+    sql_trigger_value:SELECT last_modified_time FROM `bigquery-public-data.covid19_jhu_csse.__TABLES__` where table_id = 'summary';;
   }
 
   measure: count {
