@@ -1,7 +1,7 @@
 view: jhu_state_agg_table {
   derived_table: {
-    #sql_trigger_value:SELECT last_modified_time FROM `bigquery-public-data.covid19_jhu_csse.__TABLES__` where table_id = 'summary';;
-    persist_for: "2 minutes"
+    #persist_for: "2 minutes"
+    sql_trigger_value:SELECT last_modified_time FROM `bigquery-public-data.covid19_jhu_csse.__TABLES__` where table_id = 'summary';;
     sql: SELECT reporting_date, US_State, Sum(Daily_Cases) as Daily_Cases
       FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_cleansed`
       Group By reporting_date, US_State
