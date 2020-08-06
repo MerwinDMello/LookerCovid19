@@ -4,6 +4,7 @@ view: jhu_state_agg_table {
       FROM `covid-19-trends.covid_19_trends_demo.bqpd_covid19_jhu_us_cleansed`
       Group By reporting_date, US_State
        ;;
+    persist_for:"5 minutes"
   }
 
   measure: count {
